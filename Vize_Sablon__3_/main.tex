@@ -1,0 +1,921 @@
+% ====================================================================
+% VİZE RAPOR ŞABLONU – Türk Masalları Derlemesi Web Sayfası
+% --------------------------------------------------------------------
+% DERLEME: Overleaf'te Menu > Compiler > XeLaTeX (pdfLaTeX de çalışır).
+%
+% KURALLAR (şablonu kullanmadan önce okuyun):
+%  1. Bölüm başlıklarını SİLMEYİN ve sırasını DEĞİŞTİRMEYİN.
+%  2. [KÖŞELİ PARANTEZ] içindeki ve gri renkli açıklama metinlerini
+%     kendi bilgilerinizle değiştirin; açıklama metinlerini silin.
+%  3. MEBİS'e YALNIZCA bu raporun PDF'ini yükleyin.
+%     ZIP ve HTML dosyası YÜKLEMEYİN. Tüm kontroller GitHub'dan yapılır.
+%  4. Kapaktaki GitHub ve YouTube bağlantıları doğru ve tıklanabilir
+%     olmalıdır. Teslimden önce PDF'teki bağlantılara tıklayıp deneyin.
+%  5. Haftalık katkı tablosundaki görseller için resim dosyalarını
+%     (hafta1.png, hafta2.png, ...) Overleaf projesine yükleyin.
+%     Dosya adlarında boşluk ve Türkçe karakter kullanmayın.
+%     Resim yoksa tabloda "görsel ekleyin" kutusu görünür.
+%  6. Yapay zekâ kullandıysanız Bölüm 5'i doldurun.
+% ====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else
+  \usepackage{fontspec}
+\fi
+
+\usepackage[turkish]{babel}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\headheight}{15pt}
+\renewcommand{\arraystretch}{1.2}
+\setlist{itemsep=3pt,topsep=5pt}
+
+\definecolor{ana}{HTML}{514563}
+\definecolor{acik}{HTML}{F2EAF8}
+\definecolor{pembe}{HTML}{FFF2F7}
+\definecolor{mavi}{HTML}{E6F2FC}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ana,
+  urlcolor=ana,
+  pdftitle={Kalbur Saman - Vize Raporu},
+  pdfauthor={Fatmanur Konya}
+}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{acik},
+  frame=single,
+  rulecolor=\color{ana},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Kalbur Saman}
+\fancyhead[R]{Vize Raporu}
+\fancyfoot[C]{\thepage}
+
+% BAGLANTILAR HAZIR OLDUGUNDA BU IKI SATIR DEGISTIRILECEK.
+% Ornek:
+% \newcommand{\githublink}{\url{https://github.com/kullanici/depo}}
+% \newcommand{\youtubelink}{\url{https://www.youtube.com/watch?v=KIMLIK}}
+
+\newcommand{\githublink}{https://github.com/fatmanurkonya/PROGRAMLAMAYA-G-R-V-ZE-G-Z/tree/main}
+\newcommand{\youtubelink}{\url{https://youtu.be/banDF5_eRGo}}
+
+\newcommand{\universite}{
+İstanbul Medipol Üniversitesi\\
+Güzel Sanatlar Tasarım ve Mimarlık Fakültesi\\
+Görsel İletişim Tasarımı
+}
+
+\newcommand{\dersadi}{Programlamaya Giriş}
+\newcommand{\hocaadi}{Meral Şentürk}
+\newcommand{\ogrenciadi}{Fatmanur Konya}
+\newcommand{\ogrencino}{86250017}
+\newcommand{\projeadi}{Kalbur Saman}
+
+% ISARETLI KUTU
+\newcommand{\tik}{$\boxtimes$}
+
+% GORSEL KOMUTU
+% Dosya yuklenmisse gosterir, yuklenmemisse yerini belirtir.
+\newcommand{\raporgorsel}[3]{
+  \begin{figure}[htbp]
+    \centering
+    \IfFileExists{#1}{
+      \includegraphics[
+        width=#2\linewidth,
+        height=0.67\textheight,
+        keepaspectratio
+      ]{#1}
+    }{
+      \fbox{
+        \parbox{0.86\linewidth}{
+          \centering
+          \vspace{12pt}
+          Ekran görüntüsü Overleaf'e yüklenecek.\\
+          \footnotesize\texttt{\detokenize{#1}}
+          \vspace{12pt}
+        }
+      }
+    }
+    \caption{#3}
+  \end{figure}
+}
+
+\newcommand{\haftagorsel}[1]{
+  \IfFileExists{#1}{
+    \includegraphics[
+      width=\linewidth,
+      height=3.4cm,
+      keepaspectratio
+    ]{#1}
+  }{
+    \fbox{
+      \parbox{0.88\linewidth}{
+        \centering\footnotesize
+        Görsel yüklenecek.\\
+        \texttt{\detokenize{#1}}
+      }
+    }
+  }
+}
+
+\newcommand{\katilim}{
+  \par\small
+  \tik\ Ders içinde katılım sergiledim.
+  \par
+  $\square$ Telafi yaptım.
+}
+
+\begin{document}
+
+% =========================================================
+% KAPAK
+% =========================================================
+
+\begin{titlepage}
+\centering
+\vspace*{0.7cm}
+
+{\large\universite\par}
+
+\vspace{1.4cm}
+
+{\Huge\bfseries\color{ana}\projeadi\par}
+
+\vspace{0.4cm}
+
+{\Large Türk Masalları Derlemesi Web Sayfası\par}
+{\large Vize Raporu\par}
+
+\vspace{1.3cm}
+
+{\large\textbf{Ders:} \dersadi\par}
+{\large\textbf{Öğretim Üyesi:} \hocaadi\par}
+
+\vspace{1cm}
+
+{\large\textbf{Hazırlayan:} \ogrenciadi\par}
+{\large\textbf{Öğrenci No:} \ogrencino\par}
+{\large\textbf{Sınıf:} 2. sınıf\par}
+
+\vspace{1.2cm}
+
+\fbox{
+  \parbox{0.88\linewidth}{
+    \centering
+    \vspace{8pt}
+    {\large\bfseries Proje Bağlantıları}\\[9pt]
+    \textbf{GitHub deposu:}\\
+    \githublink\\[9pt]
+    \textbf{YouTube sunum videosu:}\\
+    \youtubelink
+    \vspace{8pt}
+  }
+}
+
+\vfill
+{\large 2026--2027 Güz Dönemi\par}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% =========================================================
+\section{Giriş}
+% =========================================================
+
+Kalbur Saman, sekiz masalın kısa uyarlamalarını bir araya
+getiren bir web sayfasıdır. Projenin amacı, kullanıcının
+istediği masalı kolayca bulabilmesini ve sade bir okuma
+alanında okuyabilmesini sağlamaktır. Sayfanın tasarımında
+pembe, açık mavi ve lila tonları tercih edilmiştir.
+Masal atmosferini desteklemek için karşılama bölümünde
+bir şato görseline yer verilmiştir. İçerik, tasarım ve
+etkileşimler tek HTML dosyasında birleştirilmiştir.
+Bu raporda masal seçimi, tasarım kararları, teknik yapı,
+yapay zekâ kullanımı ve beş haftalık ders içi çalışmalar
+açıklanmaktadır.
+
+\subsection{Proje Özeti}
+
+Sayfanın üst bölümünde proje adı, gezinme bağlantıları,
+karşılama metni ve kapak görseli bulunmaktadır.
+``Masal sandığı'' bölümünde sekiz masal kartı yer almaktadır.
+Kullanıcı masal adına göre arama yapabilir veya kategori
+seçerek listeyi filtreleyebilir. ``Masal oku'' düğmesi
+seçilen masalı bir okuma penceresinde açmaktadır.
+Bu pencerede yazı boyutu değiştirilebilir ve pencere
+kapatılarak masal listesine dönülebilir.
+
+\subsection{Gereksinimlerin Karşılanması}
+
+Aşağıdaki kutular teslim hedeflerini gösterecek şekilde
+işaretlenmiştir. Son cihaz testleri, metin düzenlemeleri
+ve bağlantı kontrolleri teslim öncesinde tamamlanacaktır.
+
+\begin{center}
+\begin{tabular}{@{}p{10.7cm}c@{}}
+\toprule
+\textbf{Gereksinim} & \textbf{Durum}\\
+\midrule
+Masal sayısı 8--12 arasında: 8 masal & \tik\\
+Tek HTML dosyası & \tik\\
+Stil kodları içsel: \texttt{<style>} içinde & \tik\\
+Betik kodları içsel: \texttt{<script>} içinde & \tik\\
+İnternetsiz açılıp çalışma & \tik\\
+JavaScript'in anlamlı işlevlerde kullanılması & \tik\\
+Masal metinlerinin kendi cümlelerimle düzenlenmesi & \tik\\
+Sayfanın telefon ekranına uyum sağlaması & \tik\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Mevcut masal taslakları yapay zekâ desteğiyle hazırlanmıştır.
+Kendi cümlelerimle düzenleme maddesi, teslim öncesinde
+yapılacak kişisel metin düzenlemesini de kapsamaktadır.
+Görselin dosyaya gömüldüğü sürümün internetsiz çalışması
+cihaz üzerinde ayrıca kontrol edilecektir.
+
+% =========================================================
+\section{Masalların Seçimi}
+% =========================================================
+
+Masal listesi; Keloğlan, sihirli nesneler ve hayvan
+karakterleri çevresinde çeşitlilik oluşturacak şekilde
+hazırlanmıştır. Sayfadaki tür adları, kullanıcıların
+filtreleme yapabilmesi için kullanılan kategorilerdir.
+
+\begin{longtable}{@{}cp{3.9cm}p{2.8cm}p{5.1cm}@{}}
+\toprule
+\textbf{No} & \textbf{Masal} & \textbf{Tür}
+& \textbf{Seçilme nedeni}\\
+\midrule
+\endhead
+
+1 & Keloğlan ve Sihirli Taş & Keloğlan
+& İyilik ve paylaşma temasını işlemesi.\\
+
+2 & Keloğlan ve Dev & Keloğlan
+& Zekâ ile güç arasındaki karşılaşmayı anlatması.\\
+
+3 & Sabır Taşı & Sihirli masallar
+& Sabır ve cesaret temalarına yer vermesi.\\
+
+4 & Altın Bülbül & Sihirli masallar
+& Yolculuk ve arayış duygusu oluşturması.\\
+
+5 & Sihirli Sofra & Sihirli masallar
+& Paylaşma ve bereket temasını desteklemesi.\\
+
+6 & İnatçı Keçi & Hayvan masalları
+& Uzlaşma ve inatçılık üzerine düşünme sağlaması.\\
+
+7 & Kurnaz Tilki & Hayvan masalları
+& Aldatıcı sözlere karşı dikkatli olmayı işlemesi.\\
+
+8 & Açıl Sofram Açıl & Sihirli masallar
+& Sihirli bir nesne çevresinde olay örgüsü kurulması.\\
+
+\bottomrule
+\end{longtable}
+
+Sitedeki metinler belirli bir kitaptan birebir
+aktarılmamıştır; yapay zekâ desteğiyle oluşturulan kısa
+uyarlamalardır. Teslim öncesinde anlatıların kaynaklarla
+karşılaştırılması ve Türk masalları kapsamına
+uygunluğunun doğrulanması gerekmektedir. Özellikle hayvan
+anlatılarının kökenleri doğrulanmadan yalnızca
+Türk geleneğine ait oldukları ileri sürülmemektedir.
+
+% =========================================================
+\section{Tasarım Kararları}
+% =========================================================
+
+\subsection{Konuya Uygunluk}
+
+``Kalbur Saman'' adı, masal tekerlemelerini çağrıştırdığı
+için seçilmiştir. ``Bir varmış, bir yokmuş'' başlığı,
+sayfanın konusunu ilk bakışta anlatmaktadır.
+Kapaktaki şato görseli fantastik bir atmosfer
+oluşturmak amacıyla kullanılmıştır. Görsel, Türk
+masallarına ilişkin tarihî bir belge olarak
+sunulmamaktadır.
+
+Açık renkli zemin ve yuvarlatılmış kartlar,
+sayfanın yumuşak bir görünüme sahip olmasını
+sağlamaktadır. Masal kartlarında aynı düzenin
+kullanılmasıyla içerikler arasında görsel
+bütünlük oluşturulmuştur.
+
+\subsection{Renk Paleti ve Yazı Tipi}
+
+\begin{center}
+\begin{tabular}{@{}p{2.6cm}p{2.8cm}p{7.1cm}@{}}
+\toprule
+\textbf{Ad} & \textbf{Kod / tür}
+& \textbf{Kullanıldığı alan ve gerekçe}\\
+\midrule
+
+Açık pembe & \texttt{\#FFF2F7}
+& Sayfanın ana zemininde kullanılmıştır.\\
+
+Koyu mor & \texttt{\#514563}
+& Açık zemindeki metinlerin belirginleşmesini sağlar.\\
+
+Açık mavi & Pastel ton
+& Görsel çerçevesi ve bilgi alanlarında kullanılır.\\
+
+Lila & Pastel ton
+& Düğme ve kart ayrıntılarını vurgular.\\
+
+Georgia & Serif
+& Başlıklarda ve masal metinlerinde kitap hissi oluşturur.\\
+
+Arial & Sans serif
+& Menü ve yardımcı arayüz metinlerinde kullanılır.\\
+
+\bottomrule
+\end{tabular}
+\end{center}
+
+Kahverengi yerine pembe, açık mavi ve lila tonlarına
+ağırlık verilmiştir. Açık zemin üzerinde koyu renkli
+metin kullanılarak okunabilirlik desteklenmiştir.
+
+\subsection{Okunabilirlik, Gezinme ve Duyarlı Tasarım}
+
+\begin{itemize}
+
+\item \textbf{Okunabilirlik:}
+Masal metinleri paragraflara ayrılmıştır.
+Okuma penceresindeki A-- ve A+ düğmeleri,
+yazı boyutunu değiştirmektedir.
+
+\item \textbf{Gezinme:}
+Üst menü, arama kutusu ve kategori seçimi,
+istenen masala ulaşmayı kolaylaştırmaktadır.
+
+\item \textbf{Duyarlı tasarım:}
+Bilgisayarda iki sütunda gösterilen kartlar,
+dar ekranlarda tek sütuna dönüşmektedir.
+
+\item \textbf{Tutarlılık:}
+Kartların başlık, açıklama ve düğme yerleşimleri
+aynı düzeni takip etmektedir.
+
+\end{itemize}
+
+\subsection{Ekran Görüntüleri}
+
+Görseller, sayfanın bilgisayar ve telefon üzerindeki
+görünümünü belgelemektedir.
+
+\raporgorsel
+{Ekran Resmi 2026-11-04 19.43.00.png}
+{0.98}
+{Bilgisayarda ana sayfa, karşılama başlığı ve kapak görseli.}
+
+\raporgorsel
+{Ekran Resmi 2026-11-04 19.43.07.png}
+{0.98}
+{Arama alanı, kategori menüsü ve ilk masal kartları.}
+
+\raporgorsel
+{Ekran Resmi 2026-11-04 19.43.48.png}
+{0.98}
+{Diğer masal kartları, hakkında alanı ve alt bilgi.}
+
+\raporgorsel
+{Ekran Resmi 2026-11-04 19.43.59.png}
+{0.98}
+{Masal okuma penceresi ve yazı boyutu düğmeleri.}
+
+\raporgorsel
+{IMG_0490.PNG}
+{0.42}
+{Telefon ekranında masal kartlarının tek sütunlu görünümü.}
+
+\raporgorsel
+{IMG_0494.PNG}
+{0.42}
+{Telefon ekranında hakkında alanı ve alt bilgi.}
+
+\clearpage
+
+% =========================================================
+\section{Gerçekleştirme}
+% =========================================================
+
+\subsection{HTML Yapısı}
+
+Sayfanın üst bölümünde proje adı ile ``Masallar''
+ve ``Hakkında'' bağlantıları bulunmaktadır.
+Ana içerikte karşılama alanı, kapak görseli,
+arama kutusu, kategori seçimi ve masal kartları
+yer almaktadır. Alt bölümde proje açıklaması,
+görsel kaynağı ve öğrenci bilgileri bulunmaktadır.
+
+Masalların okunması için \texttt{dialog} etiketi
+kullanılmıştır. Seçilen masalın başlığı ve
+paragrafları bu pencereye aktarılmaktadır.
+Böylece her masal için ayrı bir HTML dosyası
+oluşturmaya gerek kalmamıştır.
+
+\subsection{İçsel CSS}
+
+CSS kuralları HTML dosyasının \texttt{<style>}
+alanında bulunmaktadır. Renkler, yazı tipleri,
+kart düzeni, kenarlıklar ve boşluklar bu alanda
+tanımlanmıştır. Kartların yerleşiminde grid,
+dar ekranlara uyum sağlamak için medya
+sorgusu kullanılmıştır.
+
+Aşağıdaki örnek, projede kullanılan iki sütundan
+tek sütuna geçiş yaklaşımını sadeleştirerek
+göstermektedir. Sınıf adı örnek amaçlıdır.
+
+\begin{lstlisting}[caption={Duyarlı kart düzeninin sadeleştirilmiş örneği}]
+.masallar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .masallar {
+    grid-template-columns: 1fr;
+  }
+}
+\end{lstlisting}
+
+Kapak görselinin gömüldüğü sürümde görsel verisi
+doğrudan \texttt{img} etiketinin \texttt{src}
+alanında tutulmaktadır. Bu yöntem dosya boyutunu
+artırsa da görselin internetten indirilmesi
+gereğini ortadan kaldırmaktadır.
+
+\subsection{İçsel JavaScript}
+
+Masallar bir dizi içinde tutulmaktadır.
+Her masal için ad, tür, kısa açıklama ve
+metin alanları bulunmaktadır.
+
+\texttt{listele} fonksiyonu, arama ve kategori
+seçimine göre kartları oluşturmaktadır.
+\texttt{masalAc} fonksiyonu, seçilen masalın
+metnini okuma penceresinde göstermektedir.
+Yazı boyutu düğmeleri, metin boyutunu belirlenen
+alt ve üst sınırlar içinde değiştirmektedir.
+
+Aramada Türkçe büyük ve küçük harf dönüşümü
+dikkate alınmıştır. Aşağıdaki örnek, arama
+mantığını sadeleştirerek göstermektedir.
+
+\begin{lstlisting}[caption={Masal adına göre arama mantığı}]
+const aranan = arama.value
+  .toLocaleLowerCase("tr");
+
+const sonuc = masallar.filter(masal =>
+  masal.ad.toLocaleLowerCase("tr")
+    .includes(aranan)
+);
+\end{lstlisting}
+
+\subsection{Sayfanın Özellikleri}
+
+\begin{itemize}
+\item Sekiz masalı kartlar hâlinde listeleme.
+\item Masal adına göre arama.
+\item Kategoriye göre filtreleme.
+\item Listelenen masal sayısını gösterme.
+\item Seçilen masalı okuma penceresinde açma.
+\item Yazı boyutunu artırma ve azaltma.
+\item Okuma penceresini kapatarak listeye dönme.
+\item Dar ekranlarda tek sütunlu kart düzeni.
+\end{itemize}
+
+% =========================================================
+\section{Yapay Zekâ Kullanımı}
+% =========================================================
+
+Projenin hazırlanmasında ChatGPT'den kod,
+metin taslağı ve düzenleme desteği alınmıştır.
+Sayfadaki masal metinleri de bu destek kapsamında
+oluşturulan kısa uyarlamalardır.
+
+\begin{longtable}{@{}p{1.7cm}p{3.2cm}p{4.6cm}p{3.5cm}@{}}
+\toprule
+\textbf{Araç} & \textbf{Kullanım amacı}
+& \textbf{İstem özeti} & \textbf{Kullanıldığı yer}\\
+\midrule
+\endhead
+
+ChatGPT
+& HTML, CSS ve JavaScript desteği
+& Sekiz masallı, pastel renkli; arama, filtreleme
+ve okuma penceresi bulunan tek dosya hazırlanması.
+& Sayfanın yapısı ve etkileşimleri.\\
+
+ChatGPT
+& Renk ve kod düzenleme
+& Kahverenginin kaldırılması; pembe ve açık mavi
+tonlarının kullanılması, kodun kısaltılması.
+& CSS ve genel düzen.\\
+
+ChatGPT
+& Masal metni taslakları
+& Belirlenen başlıklara uygun kısa uyarlamalar
+hazırlanması.
+& Masal okuma penceresi.\\
+
+ChatGPT
+& Çevrim dışı kullanım düzenlemesi
+& Kapak görselinin HTML dosyasına gömülmesi.
+& Görselin \texttt{src} alanı.\\
+
+ChatGPT
+& Rapor taslağı
+& Verilen bilgiler ve ekran görüntüleriyle
+öğretim üyesinin şablonunun doldurulması.
+& Rapor metni ve LaTeX düzeni.\\
+
+\bottomrule
+\end{longtable}
+
+\subsection{Anladığım ve Kendim Yaptığım Kısımlar}
+
+Proje adını, renk tercihlerini ve sayfanın genel
+görünümünü belirledim. Görselin büyüklüğü ve
+renkler konusunda düzenleme taleplerinde bulundum.
+Hazırlanan sayfayı HTML Online Viewer üzerinden
+görüntüledim ve değiştirilmesini istediğim
+noktaları belirttim. Bilgisayar ve telefon
+görünümlerinin ekran görüntülerini hazırladım.
+
+Kod hazırlanırken yapay zekâ desteği alındığı için
+bütün kodu tek başıma yazdığım iddiasında bulunmuyorum.
+HTML'nin içeriği, CSS'nin görünümü ve JavaScript'in
+etkileşimleri yönettiğini çalışma üzerinden
+inceledim. Sunum öncesinde arama, filtreleme,
+masal açma ve yazı boyutu değiştirme işlevlerinin
+mantığını yeniden gözden geçireceğim.
+
+% =========================================================
+\section{Haftalık Katkılar}
+% =========================================================
+
+Bu bölümde beş haftalık ders içi çalışmalar
+sunulmuştur. Çalışmalar telafi olarak yapılmamıştır.
+Hafta sıralaması 23 Eylül, 30 Eylül, 7 Ekim,
+14 Ekim ve 21 Ekim şeklindedir.
+
+GitHub deposu henüz hazırlanmadığından geçmiş
+çalışmalar için doğrulanmamış commit bilgisi
+yazılmamıştır. Çalışmalar mevcut ekran
+görüntüleriyle belgelenmiştir.
+
+\begin{longtable}{@{}
+>{\raggedright\arraybackslash}p{1.5cm}
+>{\raggedright\arraybackslash}p{6.3cm}
+>{\centering\arraybackslash}p{5.7cm}@{}}
+\toprule
+\textbf{Hafta} & \textbf{Yapılan çalışma}
+& \textbf{Görsel}\\
+\midrule
+\endhead
+
+\textbf{1. hafta}\newline
+23 Eylül
+&
+WorldWideWeb başlıklı sayfa üzerinde temel HTML
+yapısı çalışıldı. Başlık, paragraf, liste ve
+bağlantılar kullanılarak içerik bölümlere ayrıldı.
+Sayfa içi bağlantılarla ilgili bölüme ulaşma
+yaklaşımı incelendi.
+
+\textbf{Commit:} Henüz eklenmedi.
+\katilim
+&
+\haftagorsel{resim-20261007-095109-1a9ba975_9055.jpeg}
+\\
+\midrule
+
+\textbf{2. hafta}\newline
+30 Eylül
+&
+``Kimler Geldi Kimler Geçti'' dizisi için tanıtım
+sayfası hazırlandı. Konu, özet, oyuncular,
+görseller ve açılır soru alanları üzerinde çalışıldı.
+Ayrıca tıklama, çift tıklama, fareyle üzerine
+gelme ve bağlantı açma örnekleri yapıldı.
+
+\textbf{Commit:} Henüz eklenmedi.
+\katilim
+&
+c
+\haftagorsel{resim-20260927-190456-d1e387c4_5722.jpeg}
+\haftagorsel{resim-20260927-190536-69940d42_3828.jpeg}
+\par\vspace{6pt}
+\\
+\midrule
+
+\textbf{3. hafta}\newline
+7 Ekim
+&
+Kullanıcıdan isim alan bir giriş kutusu ve düğme
+üzerinde çalışıldı. JavaScript ile giriş alanının
+değeri alınarak sayfada selamlama metni oluşturma
+yaklaşımı incelendi. Boş giriş için koşul
+kullanımı çalışıldı.
+
+\textbf{Commit:} Henüz eklenmedi.
+\katilim
+&
+\haftagorsel{Ekran Resmi 2026-09-30 13.39.24 (1).png}
+\\
+\midrule
+\haftagorsel{Ekran Resmi 2026-09-30 14.55.14 (1).png}
+\par\vspace{10pt}
+\\
+\midrule
+
+
+
+\textbf{4. hafta}\newline
+14 Ekim
+&
+Bağlantı ve düğme ile farklı sayfalara yönlendirme
+çalışıldı. Renk eşleştirme örneğinde kartların
+veri özellikleri okundu; aynı ve farklı renklerin
+karşılaştırılması incelendi. Zamanlayıcı ve
+sınıf ekleme işlemleri kullanıldı.
+
+\textbf{Commit:} Henüz eklenmedi.
+\katilim
+&
+\haftagorsel{Ekran Resmi 2026-10-14 14.02.55.png}
+\par\vspace{5pt}
+\haftagorsel{Ekran Resmi 2026-09-30 14.30.04 (1).png}
+\\
+\midrule
+
+\textbf{5. hafta}\newline
+21 Ekim
+&
+Harici CSS dosyası ile HTML arasındaki bağlantı
+üzerinde çalışıldı. Kiehl's temalı sayfada
+başlık, gezinme, bölüm ve kart düzenleri ele alındı.
+Bootstrap sınıflarıyla düzenleme örnekleri yapıldı.
+Düğmeyle bir kutunun rengini değiştirme
+çalışması gerçekleştirildi.
+
+\textbf{Commit:} Henüz eklenmedi.
+\katilim
+&
+\haftagorsel{Ekran Resmi 2026-10-21 13.40.26.png}
+\par\vspace{5pt}
+\haftagorsel{Ekran Resmi 2026-11-04 20.25.31.png}
+\\
+\bottomrule
+\end{longtable}
+
+Harici CSS ve Bootstrap örnekleri ders içi
+alıştırmalardır. Vize projesinde tek HTML dosyası
+koşuluna uygun olarak içsel CSS ve içsel
+JavaScript kullanılmıştır.
+
+% =========================================================
+\section{Test ve Değerlendirme}
+% =========================================================
+
+Bilgisayar ekran görüntüleri Safari üzerinden
+alınmıştır. Telefon ekran görüntülerinde kartların
+tek sütuna dönüştüğü ve alt bölümlerin görüntülendiği
+görülmektedir. Görünüm kontrolleri ile etkileşim
+testleri ayrı değerlendirilmiştir.
+
+\begin{longtable}{@{}p{3.7cm}p{4.6cm}p{4.7cm}@{}}
+\toprule
+\textbf{Özellik} & \textbf{Bilgisayar}
+& \textbf{Telefon}\\
+\midrule
+\endhead
+
+Sayfa yerleşimi
+& Ekran görüntüsü mevcut.
+& Tek sütun görünümü mevcut.\\
+
+Masal kartları
+& Kartlar görüntüleniyor.
+& Kartlar görüntüleniyor.\\
+
+Masal penceresi
+& Açık pencere görüntüsü mevcut.
+& Son işlev kontrolü yapılacak.\\
+
+Arama ve kategori
+& Kod düzeyindeki kontroller geçti.
+& Cihaz üzerinde son kontrol yapılacak.\\
+
+Yazı boyutu
+& Kod düzeyindeki sınır kontrolleri geçti.
+& Cihaz üzerinde son kontrol yapılacak.\\
+
+İnternetsiz kullanım
+& Gömülü görselli sürüm hazır; bağlantı kapalı
+son kontrol yapılacak.
+& Bağlantı kapalı son kontrol yapılacak.\\
+
+\bottomrule
+\end{longtable}
+
+\textbf{Görüntü alınan tarayıcı:} Bilgisayarda Safari.
+
+Kod düzeyindeki kontrollerde sekiz masalın
+listelenmesi, metinlerin açılması, Türkçe arama,
+kategori seçimi ve yazı boyutu sınırları
+incelenmiştir. Bu kontroller gerçek cihazdaki
+son kullanım testinin yerine geçmemektedir.
+
+% =========================================================
+\section{Sunum Videosu}
+% =========================================================
+
+Sunum videosu hazırlanarak bağlantısı bu bölüme
+ve kapaktaki bağlantı alanına eklenecektir.
+
+\begin{center}
+\begin{tabular}{@{}p{3.7cm}p{8.6cm}@{}}
+\textbf{Video süresi:}
+& Kayıt sonrasında eklenecek; 12--18 dakika.\\
+\textbf{Görünürlük:}
+& Listelenmemiş veya herkese açık olarak ayarlanacak.\\
+\textbf{Bağlantı:}
+& \youtubelink\\
+\end{tabular}
+\end{center}
+
+Sunumda projenin amacı, sayfanın kullanımı,
+HTML yapısı, CSS kararları ve JavaScript
+işlevleri açıklanacaktır. Ders içi çalışmalar
+ve yapay zekâ desteği de belirtilecektir.
+
+\subsection{Video Kontrol Listesi}
+
+Aşağıdaki kutular teslim öncesi tamamlanacak
+kontrol hedefleri olarak işaretlenmiştir.
+
+\begin{itemize}[label={}]
+\item \tik\ Süre 12--18 dakika aralığında olacak.
+\item \tik\ Sunum boyunca kamera açık ve yüzüm görünür olacak.
+\item \tik\ Video listelenmemiş veya herkese açık olacak.
+\item \tik\ Bağlantı gizli pencerede açılıp denenecek.
+\item \tik\ YouTube'un video işlemeyi tamamladığı kontrol edilecek.
+\item \tik\ Ses ve kamera baştan sona kontrol edilecek.
+\item \tik\ Kapaktaki bağlantı ile bu bölümdeki bağlantı aynı olacak.
+\end{itemize}
+
+% =========================================================
+\section{Sonuç ve Kendi Değerlendirmem}
+% =========================================================
+
+Kalbur Saman projesinde sekiz kısa masal
+uyarlamasını bir araya getiren bir web sayfası
+hazırlandı. HTML ile içerik, CSS ile görünüm
+ve JavaScript ile kullanıcı etkileşimleri
+birleştirildi. Pastel renkler ve kart düzeniyle
+bütünlüklü bir görünüm oluşturulmaya çalışıldı.
+Çalışma sırasında özellikle görsel boyutu,
+renklerin düzenlenmesi ve kodun sadeleştirilmesi
+üzerinde duruldu.
+
+Arama, kategori seçimi ve okuma penceresi,
+sayfanın etkileşimli hâle gelmesini sağladı.
+Telefon görünümü için kart düzeni tek sütuna
+uyarlandı. Yapay zekâ desteği raporda açıklandı.
+Teslim öncesinde kaynak kontrolü, kişisel metin
+düzenlemesi, internetsiz cihaz testleri,
+GitHub deposu ve sunum videosu tamamlanacaktır.
+
+% =========================================================
+\section{Kaynakça}
+% =========================================================
+
+\begin{enumerate}
+
+\item
+Programlamaya Giriş dersi.
+\textit{Türk Masalları Derlemesi Web Sayfası Vize Briefi}.
+Öğretim üyesi tarafından paylaşılan PDF.
+
+\item
+Programlamaya Giriş dersi.
+\textit{Vize Rapor Şablonu}.
+Öğretim üyesi tarafından paylaşılan
+\texttt{Vize\_Sablon} arşivindeki LaTeX dosyası.
+
+\item
+Stöckel, Andrea.
+\textit{Fantasy Fairytale Castle}.
+Public Domain Pictures.
+Sayfada kullanılan kapak görseli.
+\url{https://www.publicdomainpictures.net/en/view-image.php?image=578308&picture=fantasy-fairytale-castle}
+
+\item
+OpenAI.
+\textit{ChatGPT}.
+Kod, kısa masal uyarlamaları ve rapor taslağı
+hazırlanmasında kullanılan yapay zekâ aracı.
+\url{https://chatgpt.com/}
+
+\end{enumerate}
+
+
+
+% =========================================================
+\appendix
+\section{Teslim Kontrol Listesi}
+% =========================================================
+
+Kutular, teslim öncesinde tamamlanacak işlemleri
+gösterecek şekilde işaretlenmiştir.
+
+\begin{itemize}[label={}]
+
+\item \tik\
+MEBİS'e yalnızca rapor PDF'i yüklenecek;
+ZIP ve HTML dosyası yüklenmeyecek.
+
+\item \tik\
+PDF dosya adı
+\texttt{86250017\_FatmanurKonya\_vize.pdf}
+olarak düzenlenecek.
+
+\item \tik\
+GitHub ve YouTube bağlantıları eklenecek,
+PDF üzerinden tıklanarak denenecek.
+
+\item \tik\
+GitHub deposuna tek HTML dosyası, rapor PDF'i,
+LaTeX dosyası ve rapor görselleri eklenecek.
+
+\item \tik\
+README dosyasına proje açıklaması,
+kullanım bilgileri ve video bağlantısı eklenecek.
+
+\item \tik\
+GitHub deposu öğretim üyesinin erişimine açılacak.
+
+\item \tik\
+Son dosyalar teslim saatinden önce depoya gönderilecek.
+
+\item \tik\
+Sayfada içsel CSS ve içsel JavaScript kullanılacak.
+
+\item \tik\
+Hazır site şablonu kullanılmayacak;
+yapay zekâ desteği açıklanacak.
+
+\item \tik\
+Masal kaynakları ve metinlerin ödev kapsamına
+uygunluğu doğrulanacak.
+
+\item \tik\
+İnternet kapalıyken görsel, arama,
+filtreleme ve okuma işlevleri denenecek.
+
+\item \tik\
+Çalışmanın mantığı sunumda açıklanacak.
+
+\end{itemize}
+
+\end{document}
