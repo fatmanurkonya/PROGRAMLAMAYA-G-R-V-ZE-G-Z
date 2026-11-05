@@ -61,4 +61,4 @@ Rapor PDF’i, LaTeX kaynak dosyası ve raporda kullanılan ekran görüntüleri
 
 ## Sunum Videosu
 
-YouTube bağlantısı video yüklendikten sonra buraya eklenecektir.
+https://youtu.be/banDF5_eRGo
