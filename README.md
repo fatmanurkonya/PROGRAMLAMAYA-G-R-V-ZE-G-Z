@@ -62,3 +62,16 @@ Rapor PDF’i, LaTeX kaynak dosyası ve raporda kullanılan ekran görüntüleri
 ## Sunum Videosu
 
 https://youtu.be/banDF5_eRGo
+## Proje Güncellemesi
+
+Kalbur Saman projesinin tek HTML dosyasında yer alan CSS ve JavaScript kodları CodePen’de ayrı panellere taşındı. Proje ZIP olarak dışa aktarıldı. Tarayıcıda çalıştırılabilen sürüm `untitled-3/dist` klasöründe yer alıyor.
+
+## Proje Dosyaları
+
+- [`index.html`](untitled-3/dist/index.html) — Sayfanın yapısını ve içeriğini oluşturur.
+- [`style.css`](untitled-3/dist/style.css) — Renkleri, yazı tiplerini ve sayfa düzenini belirler.
+- [`script.js`](untitled-3/dist/script.js) — Masal kartlarını listeler, arama ve kategori filtrelerini çalıştırır ve seçilen masalı okuma penceresinde açar.
+
+## Projeyi Çalıştırma
+
+GitHub’da **Code → Download ZIP** seçeneğiyle projeyi indirin. ZIP’i açtıktan sonra `untitled-3/dist/index.html` dosyasını tarayıcıda açın. Kapak görselinin yüklenmesi için internet bağlantısı gerekir.
