@@ -1,0 +1,147 @@
+/* Genel görünüm */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #fff2f7;
+  color: #514563;
+  font-family: Arial, sans-serif;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+header, main { max-width: 1080px; margin: auto; padding: 0 25px; }
+header {
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ead9ed;
+}
+.logo { font: bold 40px Georgia, serif; color: #9878b8; text-decoration: none; }
+nav { display: flex; gap: 50px; }
+nav a { color: #75658f; text-decoration: none; font-size: 14px; }
+nav a:hover { color: #c45f91; }
+
+/* Başlık ve fotoğraf */
+.giris { text-align: center; padding: 20px 0 15px; }
+.etiket { font-size: 11px; letter-spacing: 3px; color: #8b709f; }
+h1 {
+  font: normal clamp(48px, 8vw, 78px)/1.08 Georgia, serif;
+  margin: 18px 0;
+}
+h1 span { color: #c96b9b; }
+.giris p { color: #786b89; font-size: 15px; line-height: 1.8; }
+.kapak {
+  max-width: 450px;
+  margin: 0 auto 45px;
+  border: 20px solid #dceefa;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #e8f2fc;
+  box-shadow: 0 12px 35px #a48bc425;
+}
+.kapak img { display: block; width: 100%; height: auto; }
+
+/* Arama alanı ve masal kartları */
+h2 { font: normal 35px Georgia, serif; margin: 10px 0; }
+.araclar { display: flex; gap: 12px; margin: 25px 0 15px; }
+input, select {
+  padding: 15px 13px;
+  border: 1px solid #cbdff2;
+  border-radius: 10px;
+  background: #f2f8ff;
+  color: #514563;
+}
+input { flex: 1; min-width: 0; }
+input::placeholder { color: #80748c; }
+#sonuc { font-size: 13px; color: #786b89; margin-bottom: 20px; }
+.kartlar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.kart {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  background: #fffafd;
+  border: 1px solid #ead9ed;
+  border-top: 4px solid #e9aac8;
+  border-radius: 14px;
+}
+.kart:nth-child(3n+2) { border-top-color: #a9cfea; }
+.kart:nth-child(3n) { border-top-color: #c7b0e3; }
+.kart-ust { display: flex; justify-content: space-between; align-items: center; }
+.numara { font: italic 28px Georgia, serif; color: #9471ad; }
+.kategori-etiket { font-size: 11px; color: #786b89; }
+.kart h3 { font: normal 27px Georgia, serif; margin: 17px 0 12px; }
+.kart p { color: #786b89; font-size: 14px; line-height: 1.8; margin: 0 0 22px; }
+.oku {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #e5d9f5;
+  color: #514563;
+}
+.oku:hover { background: #d9c6ee; }
+
+/* Hakkında ve alt bilgi */
+.hakkinda { padding: 28px; margin: 45px 0 25px; border-radius: 14px; background: #e8f2fc; }
+.hakkinda h2 { font-size: 28px; }
+.hakkinda p { font-size: 14px; line-height: 1.9; }
+.kaynak, footer { font-size: 12px; color: #786b89; }
+.kaynak a { color: inherit; }
+footer { padding: 25px; text-align: center; }
+
+/* Masal okuma penceresi */
+dialog {
+  width: min(700px, 92vw);
+  max-height: 88vh;
+  padding: 0;
+  border: 0;
+  border-radius: 17px;
+  background: #fff8fc;
+  color: #514563;
+}
+dialog::backdrop { background: #30253dba; }
+.pencere-menu {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: #f3eafa;
+  border-bottom: 1px solid #dfd1ed;
+}
+.pencere-menu button {
+  padding: 8px 11px;
+  border: 1px solid #cbdff2;
+  border-radius: 6px;
+  background: #f2f8ff;
+  color: #514563;
+}
+.okuma { padding: 28px 34px; }
+#masalMetni { font: 19px/1.95 Georgia, serif; }
+#masalMetni p { margin: 0 0 22px; }
+.uyarlama { border-top: 1px solid #ead9ed; padding-top: 18px; font: 12px/1.8 Arial, sans-serif; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #9878b8; outline-offset: 4px;
+}
+::selection { background: #edcce2; color: #443651; }
+
+/* Telefon uyumu */
+@media (max-width: 600px) {
+  header { padding: 20px 16px; }
+  main { padding: 0 16px; }
+  .logo { font-size: 23px; }
+  nav { gap: 12px; }
+  nav a { font-size: 12px; }
+  .giris { padding-top: 30px; }
+  .kartlar { grid-template-columns: 1fr; }
+  .araclar { flex-direction: column; }
+  .kart, .okuma { padding: 22px; }
+  .pencere-menu { padding: 12px; font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

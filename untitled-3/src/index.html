@@ -1,0 +1,53 @@
+<header>
+  <a href="#" class="logo">kalbur saman.</a>
+  <nav aria-label="Ana menü">
+    <a href="#masallar">Masallar</a>
+    <a href="#hakkinda">Hakkında</a>
+  </nav>
+</header>
+<main>
+  <section class="giris">
+    <span class="etiket">TÜRK MASALLARI DERLEMESİ</span>
+    <h1>Bir varmış,<br><span>bir yokmuş.</span></h1>
+    <p>Sekiz masal, sekiz ayrı yolculuk.<br>Bir masal seç, hikâyenin kapısını arala.</p>
+  </section>
+  <figure class="kapak">
+    <img src="https://www.publicdomainpictures.net/pictures/580000/velka/fantasie-marchen-schloss-1708113099i1L.jpg" alt="Ağaçlar ve suyun arasında masalsı bir şato">
+  </figure>
+  <section id="masallar">
+    <span class="etiket">HİKÂYELER BURADA BAŞLAR</span>
+    <h2>Masal sandığı</h2>
+    <div class="araclar">
+      <input id="arama" type="search" placeholder="Masal adı ara…" aria-label="Masal adı ara">
+      <select id="kategori" aria-label="Masal kategorisi">
+        <option value="hepsi">Bütün masallar</option>
+        <option>Keloğlan</option>
+        <option>Sihirli masallar</option>
+        <option>Hayvan masalları</option>
+      </select>
+    </div>
+    <p id="sonuc" role="status" aria-live="polite"></p>
+    <div class="kartlar" id="kartlar"></div>
+  </section>
+  <section class="hakkinda" id="hakkinda">
+    <h2>Bir sandık dolusu hikâye.</h2>
+    <p>Kalbur Saman, masal okumak için hazırlanmış bir derleme sayfasıdır. Keloğlan’ın zekâsı, sihirli nesneler ve konuşan hayvanlar burada buluşur. Metinler geleneksel masal motiflerinden esinlenen kısa özgün uyarlamalardır; kaynak derlemelerinin birebir aktarımı değildir.</p>
+    <p class="kaynak">Kapak görseli: <a href="https://www.publicdomainpictures.net/en/view-image.php?image=578308&picture=fantasy-fairytale-castle" target="_blank" rel="noopener noreferrer">Andrea Stöckel / Public Domain Pictures</a></p>
+  </section>
+</main>
+<footer>Kalbur Saman · Fatmanur Konya · Programlamaya Giriş</footer>
+<dialog id="pencere" aria-labelledby="masalBasligi">
+  <div class="pencere-menu">
+    <span>Keyifli okumalar</span>
+    <div>
+      <button id="kucult" aria-label="Yazıyı küçült">A−</button>
+      <button id="buyut" aria-label="Yazıyı büyüt">A+</button>
+      <button id="kapat">Kapat ×</button>
+    </div>
+  </div>
+  <article class="okuma">
+    <h2 id="masalBasligi"></h2>
+    <div id="masalMetni"></div>
+    <p class="uyarlama">Geleneksel masal motiflerinden esinlenen kısa özgün uyarlama.</p>
+  </article>
+</dialog>
